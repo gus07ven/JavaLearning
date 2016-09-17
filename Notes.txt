@@ -1,0 +1,9 @@
+1. The DAO shouldhave Spring Config..
+  - XML file (SpringDAO.xml)
+  - POM should be updated
+  - Create a class contact(name, phone)
+2. Service module
+  - Enter data into contact object
+  - Import the DAO Spring XML configuration: go to the service spring xml --> <import>
+  - SpringService.XML
+	* <import resource="classpath*:/spring-config.xml"/>
