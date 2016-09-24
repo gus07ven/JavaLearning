@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+        xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd            
+            http://www.springframework.org/schema/jee 
+            http://www.springframework.org/schema/jee/spring-jee.xsd">
+    
+    <!--import dao spring.xml here-->
+    <import resource="C:\Users\W207282211\Documents\MyProject\mydao\scr\main\resources\daoSpring.xml" />
+
+    <context:annotation-config/>
+    <context:component-scan base-package="servicepack" />
+    <beans>
+        <bean id="contact" class="servicepack.ContactManager" ></bean>
+    </beans>
+    <!--<bean id="userServiceImp" class="org.mdacc.ris.ddp.service.UserServiceImp" />-->
+
+
+
+</beans>
