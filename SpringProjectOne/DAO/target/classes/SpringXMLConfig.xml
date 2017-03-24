@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+">
+    
+    <bean id="student" class="projectone.dao.Student" autowire="byType" >
+        <property name="firstName" value="Gustavo"/>
+        <property name="lastName" value="Arismendi"/>
+        <property name="dateOfBirth" value="01/02/85"/>
+    </bean>
+    
+    <bean id="bean2" class="projectone.dao.Address" >
+        <property name="street" value="1234 Main" />
+        <property name="zip" value="77055" />
+        <property name="city" value="Houston" />
+    </bean>
+    
+    <bean id="bean3" class="projectone.dao.Grade" >
+        <property name="letterGrade" value="A" />
+        <property name="subject" value="Math 3330" />
+    </bean>
+ 
+</beans>
