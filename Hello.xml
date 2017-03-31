@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="Hello.xslt"?>
+
+<hello-world>
+  <greeter> An XSLT Programmer </greeter>
+  <greeting> Hello World </greeting>
+</hello-world>
