@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:jdbc="http://www.springframework.org/schema/jdbc">
+    
+    <bean id="student" class="projectone.dao.Student" autowire="byType" >
+        <property name="firstName" value="Gustavo"/>
+        <property name="lastName" value="Arismendi"/>
+        <property name="dateOfBirth" value="01/02/85"/>
+    </bean>
+    
+    <bean id="bean2" class="projectone.dao.Address" >
+        <property name="street" value="1234 Main" />
+        <property name="zip" value="77055" />
+        <property name="city" value="Houston" />
+    </bean>
+    
+    <bean id="bean3" class="projectone.dao.Grade" >
+        <property name="letterGrade" value="A" />
+        <property name="subject" value="Math 3330" />
+    </bean>
+ 
+    <bean id="studentDAO" class="projectone.dao.StudentDAOImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver"/>
+        <property name="url" value="jdbc:derby://localhost:1527/DbOne/"/>
+        <property name="username" value="gustavo"/>
+        <property name="password" value="gustavo"/>
+    </bean>
+  
+</beans>
