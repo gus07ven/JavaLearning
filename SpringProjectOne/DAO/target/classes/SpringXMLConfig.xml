@@ -1,27 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-">
-    <bean id="students" class="projectone.assign3.Students" >        
-    </bean>
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+  http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+  http://www.springframework.org/schema/aop 
+  http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+  http://www.springframework.org/schema/context 
+  http://www.springframework.org/schema/context/spring-context-2.5.xsd
+  http://www.springframework.org/schema/tx 
+  http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
     
-    <bean id="student" class="projectone.dao.Student" autowire="byType" >
-        <property name="firstName" value="Gustavo"/>
-        <property name="lastName" value="Arismendi"/>
-        <property name="dateOfBirth" value="01/02/85"/>
+    <bean id="students" class="projectone.assign3.Students">        
     </bean>
-    
-    <bean id="bean2" class="projectone.dao.Address" >
-        <property name="street" value="1234 Main" />
-        <property name="zip" value="77055" />
-        <property name="city" value="Houston" />
-    </bean>
-    
-    <bean id="bean3" class="projectone.dao.Grade" >
-        <property name="letterGrade" value="A" />
-        <property name="subject" value="Math 3330" />
-    </bean>
+    <bean id="daoController" class="projectone.assign3.DAOController"></bean>
  
 </beans>

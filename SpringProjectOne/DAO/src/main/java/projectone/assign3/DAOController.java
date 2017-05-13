@@ -18,33 +18,46 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @author gusta
  */
 public class DAOController {
-
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence"); 
-    private EntityManager em = emf.createEntityManager(); 
-    private ApplicationContext context = new ClassPathXmlApplicationContext("SpringXMLConfig.xml"); 
+    
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence");    
+    private EntityManager em = emf.createEntityManager();    
+    private ApplicationContext context = new ClassPathXmlApplicationContext("SpringXMLConfig.xml");    
     private Students bean = (Students) context.getBean("students");
     
-
-    public void getAllStudents() {
+    public List<Students> getAllStudents() {
         TypedQuery<Students> query = em.createQuery(
                 "SELECT s FROM Students s", Students.class);
         
         List<Students> listStudents = query.getResultList();
         for (Students entity : listStudents) {
-            System.out.println(entity.getFirstname() + " " 
-                             + entity.getLastname() + " " 
-                             + entity.getDateofbirth() + " "
-                             + entity.getAddress() + " "
-                             + entity.getGrade());
+            System.out.println(entity.getFirstname() + " "
+                    + entity.getLastname() + " "
+                    + entity.getDateofbirth() + " "
+                    + entity.getAddress() + " "
+                    + entity.getGrade());
         }
+        return listStudents;
     }
-
-    public void addStudent(Students bean) {
+    
+    public Students addStudent() {
+        bean.setFirstname("Mark");
+        bean.setLastname("Walhberg");
+        bean.setDateofbirth("09-18-1981");
+        bean.setGrade("A");
         em.getTransaction().begin();
         em.persist(bean);
         em.getTransaction().commit();
+        return bean;
     }
-
+    
+        public Students delete() {
+        em.find(Students.class, 3);
+        em.getTransaction().begin();
+        em.remove(3);
+        em.getTransaction().commit();
+        return new Students();
+    }
+    
     public static void main(String[] args) {
         
         DAOController std = new DAOController();
@@ -54,6 +67,6 @@ public class DAOController {
 //        std.bean.setAddress("1700 HallOfFame");
 //        std.bean.setGrade("A");
 //        std.addStudent(std.bean);
-        std.getAllStudents();       
+        std.getAllStudents();        
     }
 }
