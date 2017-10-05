@@ -1,17 +1,17 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MyList {
 
-    public double getKey(){
+    public Double getKey(){
         Scanner scanner = new Scanner(System.in);
-        double key = Double.parseDouble(scanner.next());
+        Double key = Double.parseDouble(scanner.next());
         return key;
     }
 
-    public String binSearch(Double[] array, double value) {
+    public int binSearch(Double[] array, Double value) {
 
-        // Source: majority of algorithm comes from Starting out with Java from Control Structures
+        // Source:
+        // 1. Majority of algorithm comes from Starting out with Java from Control Structures
         // to Data Structures by Tony Gaddis and Godfrey Muganda. I added some code to adapt it to my need.
         int first;
         int last;
@@ -27,27 +27,19 @@ public class MyList {
         while (!found && first <= last) {
             middle = (first + last) / 2;
 
-            if (array[middle].doubleValue() == value) {
-                if (middle == 0 || array[middle].doubleValue() != array[middle -1].doubleValue()) {
+            if (array[middle].doubleValue() == value.doubleValue()) {
                     found = true;
                     position = middle;
-                } else {
-                    while(array[middle].doubleValue() == array[middle -1].doubleValue()){
-                        middle = middle - 1;
-                    }
-                    found = true;
-                    position = middle;
-                }
-            } else if (array[middle].doubleValue() > value)
+            } else if (array[middle].doubleValue() > value.doubleValue())
                 last = middle - 1;
             else
                 first = middle + 1;
         }
 
         if(position < 0)
-            return "The key was not found!";
+            return -1;
         else
-            return Integer.toString(position);
+            return 1;
     }
 
     // I made some modifications and here's the bubbleSort
@@ -61,7 +53,9 @@ public class MyList {
         for(int i = 0; i < arrLength; i++){
             for(int j = 1; j < (arrLength - i); j++){
                 // If first element is bigger than element to its right swap
-                if(inputs[j - 1] > inputs[j]){
+                Double previous = inputs[j - 1].doubleValue();
+                Double next = inputs[j].doubleValue();
+                if(previous > next){
                     temp = inputs[j - 1];
                     inputs[j - 1] = inputs[j];
                     inputs[j] = temp;
@@ -71,20 +65,55 @@ public class MyList {
         return inputs;
     }
 
+    public int indexUnsorted(Double[] unsorted, Double keyValue){
+
+        int index = 0;
+
+        for(int i = 0; i < unsorted.length; i++){
+            if(unsorted[i].doubleValue() == keyValue.doubleValue()){
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
 
     public static void main(String args[]){
 
-        Double[] inputs = new Double[args.length];
+        Double key;
+        int resultBinSearch;
+        Double[] unsortedInputs = new Double[args.length];
+        Double[] sortedInputs;
+        Double[] test = new Double[args.length];
 
         for (int i = 0; i < args.length; i++) {
-                inputs[i] = Double.parseDouble(args[i]);
+                unsortedInputs[i] = Double.parseDouble(args[i]);
+                test[i] = Double.parseDouble(args[i]);
         }
 
+       /* System.out.println("----Unsorted inputs-----");
+        for(Double unsort : unsortedInputs){
+            System.out.println(unsort);
+        }*/
+
         MyList myList = new MyList();
-        inputs = myList.bubbleSort(inputs);
-        for(Double input : inputs){
-            System.out.println(input);
+        key = myList.getKey();
+        /*System.out.println("Key value is: " + key);*/
+        sortedInputs = myList.bubbleSort(unsortedInputs);
+
+       /* System.out.println("----Sorted inputs-----");
+        for(Double sort : sortedInputs){
+            System.out.println(sort);
+        }*/
+        resultBinSearch = myList.binSearch(sortedInputs,key);
+        /*System.out.println("Bin search result is: " + resultBinSearch);*/
+
+        if(resultBinSearch == 1){
+            System.out.println(myList.indexUnsorted(test,key));
+        } else {
+            System.out.println("The key was not found!");
         }
-        System.out.println(myList.binSearch(inputs, myList.getKey()));
     }
 }
+
+
